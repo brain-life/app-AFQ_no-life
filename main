@@ -1,11 +1,7 @@
 #!/bin/bash
-#PBS -l nodes=1:ppn=16:dc2,walltime=4:00:00
+#PBS -l nodes=1:ppn=8:dc2,walltime=4:00:00
 #PBS -N AFQ_no-life
 #PBS -V
-#PBS -o stdout.$PBS_JOBID.log
-#PBS -e stderr.$PBS_JOBID.log
-
-[ $PBS_O_WORKDIR ] && cd $PBS_O_WORKDIR
 
 module load matlab
 module load spm
@@ -14,13 +10,9 @@ rm -rf tracts
 rm -f finished
 
 echo "starting matlab"
-export MATLABPATH=$MATLABPATH:$SERVICE_DIR
 matlab -nodisplay -nosplash -r main
-if [ -s output.mat ];
+if [ ! -s output.mat ];
 then
-	echo 0 > finished
-else
 	echo "output missing"
-	echo 1 > finished
 	exit 1
 fi

@@ -1,0 +1,5 @@
+{
+  "dtiinit": "/home/hayashis/testdata/dtiinit",
+  "track": "/home/hayashis/testdata/track/track.tck",
+  "useinterhemisphericsplit": false
+}

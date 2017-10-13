@@ -13,6 +13,8 @@ switch getenv('ENV')
         addpath(genpath('/usr/local/vistasoft'))
         addpath(genpath('/usr/local/jsonlab'))
         addpath(genpath('/usr/local/afq-master'))
+       
+        addpath(genpath('/usr/local/spm8'))
 end
 
 % load my own config.json
@@ -25,7 +27,6 @@ wbfg = dtiImportFibersMrtrix(config.track, .5);
 % Dependency "AFQ" use this repository: https://github.com/francopestilli/afq
 [fg_classified,~,classification]= AFQ_SegmentFiberGroups(fullfile(config.dtiinit, 'dti/dt6.mat'), wbfg, [], [], config.useinterhemisphericsplit);
 %if removing 0 weighted fibers after AFQ:
-
 
 tracts = fg2Array(fg_classified);
 clear fg

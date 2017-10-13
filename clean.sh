@@ -1,0 +1,2 @@
+rm pid
+rm *.log
