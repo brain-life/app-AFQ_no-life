@@ -3,14 +3,19 @@
 #PBS -N AFQ_no-life
 #PBS -V
 
-module load matlab
-module load spm
+#module load matlab
+#module load spm
+
+module load singularity 2> /dev/null
 
 rm -rf tracts
 rm -f finished
 
 echo "starting matlab"
-matlab -nodisplay -nosplash -r main
+#matlab -nodisplay -nosplash -r main
+
+singularity exec -e docker://brainlife/mcr:neurodebian1604-r2017a ./compiledmatlab/main
+
 if [ ! -s output.mat ];
 then
 	echo "output missing"

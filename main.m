@@ -1,21 +1,21 @@
 function [] = main()
 
-switch getenv('ENV')
-    case 'IUHPC'
-        disp('loading paths for IUHPC')
-        addpath(genpath('/N/u/brlife/git/encode'))
-        addpath(genpath('/N/u/brlife/git/vistasoft'))
-        addpath(genpath('/N/u/brlife/git/jsonlab'))
-        addpath(genpath('/N/u/brlife/git/afq'))
-    case 'VM'
-        disp('loading paths for Jetstream VM')
-        addpath(genpath('/usr/local/encode'))
-        addpath(genpath('/usr/local/vistasoft'))
-        addpath(genpath('/usr/local/jsonlab'))
-        addpath(genpath('/usr/local/afq-master'))
-       
-        addpath(genpath('/usr/local/spm8'))
-end
+% switch getenv('ENV')
+%     case 'IUHPC'
+%         disp('loading paths for IUHPC')
+%         addpath(genpath('/N/u/brlife/git/encode'))
+%         addpath(genpath('/N/u/brlife/git/vistasoft'))
+%         addpath(genpath('/N/u/brlife/git/jsonlab'))
+%         addpath(genpath('/N/u/brlife/git/afq'))
+%     case 'VM'
+%         disp('loading paths for Jetstream VM')
+%         addpath(genpath('/usr/local/encode'))
+%         addpath(genpath('/usr/local/vistasoft'))
+%         addpath(genpath('/usr/local/jsonlab'))
+%         addpath(genpath('/usr/local/afq-master'))
+%        
+%         addpath(genpath('/usr/local/spm8'))
+% end
 
 % load my own config.json
 config = loadjson('config.json');
@@ -38,7 +38,7 @@ cm = parula(length(tracts));
 for it = 1:length(tracts)
    tract.name   = tracts(it).name;
    tract.color  = cm(it,:);
-   tract.coords = tracts(it).fibers;
+   tract.coords = tracts(it).fibers(1:3:end); %33percent
    all_tracts(it).name = tracts(it).name;
    all_tracts(it).color = cm(it,:);
    savejson('', tract, fullfile('tracts',sprintf('%i.json',it)));
