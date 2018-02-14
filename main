@@ -14,7 +14,7 @@ rm -f finished
 echo "starting matlab"
 #matlab -nodisplay -nosplash -r main
 
-singularity exec -e docker://brainlife/mcr:neurodebian1604-r2017a ./compiledmatlab/main
+singularity exec -e docker://brainlife/mcr:neurodebian1604-r2017a ./compiled/main
 
 if [ ! -s output.mat ];
 then
