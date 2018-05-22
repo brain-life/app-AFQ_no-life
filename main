@@ -1,20 +1,15 @@
 #!/bin/bash
-#PBS -l nodes=1:ppn=8,vmem=64gb,walltime=4:00:00
+#PBS -l nodes=1:ppn=8,vmem=64gb,walltime=5:00:00
 #PBS -N AFQ_no-life
 #PBS -V
 
-#module load matlab
-#module load spm
-
-module load singularity 2> /dev/null
-
 rm -rf tracts
-rm -f finished
+#module load singularity 2> /dev/null
 
 echo "starting matlab"
 #matlab -nodisplay -nosplash -r main
 
-singularity exec -e docker://brainlife/mcr:neurodebian1604-r2017a ./compiledmatlab/main
+singularity exec -e docker://brainlife/mcr:neurodebian1604-r2017a ./compiled/main
 
 if [ ! -s output.mat ];
 then
