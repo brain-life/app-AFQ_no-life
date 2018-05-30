@@ -1,23 +1,13 @@
 function [] = main()
 
-% switch getenv('ENV')
-%     case 'IUHPC'
-%         disp('loading paths for IUHPC')
-%         addpath(genpath('/N/u/brlife/git/encode'))
-%         addpath(genpath('/N/u/brlife/git/vistasoft'))
-%         addpath(genpath('/N/u/brlife/git/jsonlab'))
-%         addpath(genpath('/N/u/brlife/git/afq'))
-%     case 'VM'
-%         disp('loading paths for Jetstream VM')
-%         addpath(genpath('/usr/local/encode'))
-%         addpath(genpath('/usr/local/vistasoft'))
-%         addpath(genpath('/usr/local/jsonlab'))
-%         addpath(genpath('/usr/local/afq-master'))
-%        
-%         addpath(genpath('/usr/local/spm8'))
-% end
+if ~isdeployed
+    addpath(genpath('/N/u/brlife/git/encode'))
+    addpath(genpath('/N/u/brlife/git/jsonlab'))
+    addpath(genpath('/N/u/brlife/git/vistasoft'))
+    addpath(genpath('/N/u/brlife/git/afq'))
+    addpath(genpath('/N/soft/rhel7/spm/8'))
+end
 
-% load my own config.json
 config = loadjson('config.json');
 
 % Load the track file
