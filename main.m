@@ -1,10 +1,11 @@
 function [] = main()
 
 if ~isdeployed
+    disp('adding paths');
+    addpath(genpath('/N/soft/rhel7/spm/8')) %spm needs to be loaded before vistasoft as vistasoft provides nanmean that works
     addpath(genpath('/N/u/brlife/git/encode'))
     addpath(genpath('/N/u/brlife/git/jsonlab'))
     addpath(genpath('/N/u/brlife/git/vistasoft'))
-    addpath(genpath('/N/soft/rhel7/spm/8'))
     addpath(genpath('/N/u/brlife/git/afq'))
 end
 
@@ -13,10 +14,9 @@ config = loadjson('config.json')
 % Load the track file
 wbfg = dtiImportFibersMrtrix(config.track, .5);
 
-% Classify the major tracts from all the fascicles
-% Dependency "AFQ" use this repository: https://github.com/francopestilli/afq
+disp('Classify the major tracts from all the fascicles');
 [fg_classified,~,classification]= AFQ_SegmentFiberGroups(fullfile(config.dtiinit, 'dti/dt6.mat'), wbfg, [], [], config.useinterhemisphericsplit);
-%if removing 0 weighted fibers after AFQ:
+disp('done segmenting. outputting tracts.json');
 
 tracts = fg2Array(fg_classified);
 clear fg
