@@ -4,11 +4,11 @@ if ~isdeployed
     addpath(genpath('/N/u/brlife/git/encode'))
     addpath(genpath('/N/u/brlife/git/jsonlab'))
     addpath(genpath('/N/u/brlife/git/vistasoft'))
-    addpath(genpath('/N/u/brlife/git/afq'))
     addpath(genpath('/N/soft/rhel7/spm/8'))
+    addpath(genpath('/N/u/brlife/git/afq'))
 end
 
-config = loadjson('config.json');
+config = loadjson('config.json')
 
 % Load the track file
 wbfg = dtiImportFibersMrtrix(config.track, .5);
