@@ -138,6 +138,7 @@ barlayout.barmode = 'group';
 barplot = struct;
 barplot.data = bardata;
 barplot.layout = barlayout;
+barplot.type = 'plotly';
 
 T = cell2table(tract_info);
 T.Properties.VariableNames = {'Tracts', 'FiberCount'};
