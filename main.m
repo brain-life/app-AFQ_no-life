@@ -129,7 +129,6 @@ bar2.marker.color = 'rgb(204, 204, 204)';
 
 bardata = {bar1, bar2};
 barlayout = struct;
-barlayout.title = 'Number of Fibers';
 barlayout.xaxis = struct;
 barlayout.xaxis.tickfont = struct;
 barlayout.xaxis.tickfont.size = 8;
@@ -139,6 +138,7 @@ barplot = struct;
 barplot.data = bardata;
 barplot.layout = barlayout;
 barplot.type = 'plotly';
+barplot.name = 'Number of Fibers';
 
 T = cell2table(tract_info);
 T.Properties.VariableNames = {'Tracts', 'FiberCount'};
@@ -166,14 +166,13 @@ function out = make_plotly_data(values, plotTitle, axisTitle)
 out = struct;
 
 out.data = struct;
-out.layout = struct;
 out.type = 'plotly';
+out.name = plotTitle;
 
 out.data.x = values;
 out.data.type = 'box';
 out.data.name = axisTitle;
 out.data = {out.data};
 
-out.layout.title = plotTitle;
 
 end
